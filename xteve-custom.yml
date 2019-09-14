@@ -14,14 +14,14 @@
 
   - name: "Set Known Facts"
     set_fact:
-      pgrole: "xteve"
+      pgrole: "xtevecustom"
       intport: "34400"
       extport: "34400"
-      image: "bl0m1/xtevedocker"
+      image: "alturismo/xteve"
 
 # CORE (MANDATORY) ############################################################
   - name: CronJob Role
-    include_tasks: "/opt/plexguide/containers/_core.yml"
+    include_tasks: "/opt/communityapps/apps/_core.yml"
 
 # LABELS ######################################################################
 
@@ -37,15 +37,15 @@
   - name: "Setting PG Volumes"
     set_fact:
       pg_volumes:
-        - "/opt/appdata/{{pgrole}}/data:/root/xteve"
-        - "/opt/appdata/{{pgrole}}/epg:/tmp/xteve"
+        - "/opt/appdata/{{pgrole}}/data:/root/xtevecustom"
+        - "/opt/appdata/{{pgrole}}/epg:/tmp/xtevecustom"
         - "/etc/localtime:/etc/localtime:ro"
 
   - name: "Setting PG ENV"
     set_fact:
       pg_env:
-        PUID: 1000
-        PGID: 1000
+        PUID: 1001
+        PGID: 1001
 
 # MAIN DEPLOYMENT #############################################################
 
